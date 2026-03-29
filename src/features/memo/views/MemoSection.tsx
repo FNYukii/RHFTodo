@@ -21,7 +21,7 @@ const MemoSection = () => {
   }, [])
 
   return (
-    <section className="bg-card p-4 rounded-lg">
+    <section className="bg-card p-4 rounded-lg h-60">
       <p className="text-accent text-lg">メモ</p>
 
       <textarea

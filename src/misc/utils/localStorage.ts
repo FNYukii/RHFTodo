@@ -1,9 +1,7 @@
 import type { Memo } from '../../features/memo/types/Memo'
-import type { Notebook } from '../../features/notebook/types/Notebook'
 
 interface StorageMap {
   memo: Memo
-  notebook: Notebook
 }
 
 type StorageKey = keyof StorageMap
