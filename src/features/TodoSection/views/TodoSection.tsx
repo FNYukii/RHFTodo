@@ -4,16 +4,22 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import { Button } from '../../../common/views/Button'
 
 import type { Todo } from '../types/Todo'
+import clsx from 'clsx'
 
 type TodoListFormValue = {
   todos: Todo[]
 }
 
+const DEFAULT_VALUES: TodoListFormValue = {
+  todos: [],
+}
+
 export const TodoSection = () => {
   const {
     control,
+    register,
     formState: { isDirty },
-  } = useForm<TodoListFormValue>()
+  } = useForm<TodoListFormValue>({ defaultValues: DEFAULT_VALUES })
 
   const { fields, append } = useFieldArray({
     control,
@@ -22,9 +28,9 @@ export const TodoSection = () => {
 
   const addTodo = () => {
     const newTodo: Todo = {
-      content: 'new todo ',
+      content: '',
     }
-    append(newTodo)
+    append(newTodo, {})
   }
 
   return (
@@ -48,9 +54,18 @@ export const TodoSection = () => {
       )}
 
       {fields.length !== 0 && (
-        <div className="mt-2 flex flex-col gap-2">
-          {fields.map((todo) => (
-            <div key={todo.id}>{todo.content}</div>
+        <div className="mt-2 flex flex-col gap-1">
+          {fields.map((field, index) => (
+            <div key={field.id} className="flex">
+              <input
+                {...register(`todos.${index}.content`)}
+                placeholder="空のTodo"
+                className={clsx(
+                  'py-1 outline-none border-b border-transparent w-full',
+                  'focus:border-disabled placeholder:text-disabled',
+                )}
+              />
+            </div>
           ))}
         </div>
       )}
