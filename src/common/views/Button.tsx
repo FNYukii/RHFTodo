@@ -2,16 +2,22 @@ import clsx from 'clsx'
 import type { ReactNode } from 'react'
 
 type Variant = 'flat' | 'outlined' | 'filled'
+type Color = 'accent' | 'secondary'
 
 type Props = {
   children: ReactNode
   variant?: Variant
+  color?: Color
   disabled?: boolean
   className?: string
   onClick?: () => void
 }
 
-export const Button = ({ variant = 'flat', ...props }: Props) => {
+export const Button = ({
+  variant = 'flat',
+  color = 'accent',
+  ...props
+}: Props) => {
   return (
     <button
       onClick={props.onClick}
@@ -19,11 +25,21 @@ export const Button = ({ variant = 'flat', ...props }: Props) => {
       className={clsx(
         variant === 'flat' && [
           'p-2 -m-2 rounded-full',
-          'font-bold text-accent',
+          'font-bold',
           'transition',
           'enabled:cursor-pointer',
-          'outline-accent',
-          'enabled:hover:bg-accent/20 focus-visible:bg-accent/20 focus-visible:outline-2 disabled:text-disabled',
+          'focus-visible:outline-2 disabled:text-disabled',
+
+          color === 'accent' && [
+            'outline-accent text-accent',
+            'enabled:hover:bg-accent/20 focus-visible:bg-accent/20',
+          ],
+
+          color === 'secondary' && [
+            'outline-secondary text-secondary',
+            'enabled:hover:bg-secondary/20 focus-visible:bg-secondary/20',
+          ],
+
           props.className,
         ],
 

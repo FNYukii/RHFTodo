@@ -1,4 +1,4 @@
-import { LucideSave, PlusIcon, Check } from 'lucide-react'
+import { LucideSave, PlusIcon } from 'lucide-react'
 
 import { useFieldArray, useForm } from 'react-hook-form'
 import { Button } from '../../common/views/Button'
@@ -9,10 +9,12 @@ import {
   setToLocalStorage,
 } from '../../misc/utils/localStorage'
 import { useEffect } from 'react'
+import { TodoRow } from './TodoRow'
 
 // MARK: Types
 export type Todo = {
   content: string
+  achievedAt?: Date
 }
 
 export type TodoListFormValues = {
@@ -95,29 +97,13 @@ export const TodoSection = (props: Props) => {
       {fields.length !== 0 && (
         <div className="mt-2 flex flex-col gap-1">
           {fields.map((field, index) => (
-            <div
-              key={field.id}
-              className={clsx('flex gap-2 items-center', 'group')}
-            >
-              <input
-                {...register(`todos.${index}.content`)}
-                placeholder="空のTodo"
-                className={clsx(
-                  'py-1 w-full',
-                  'border-b border-transparent',
-                  'outline-none',
-                  'transition focus:border-disabled group-hover:border-disabled',
-                  'placeholder:text-disabled',
-                )}
-              />
-
-              <Button
-                onClick={() => removeTodo(index)}
-                className="invisible group-hover:visible"
-              >
-                <Check />
-              </Button>
-            </div>
+            <TodoRow
+              field={field}
+              control={control}
+              index={index}
+              onRemove={() => removeTodo(index)}
+              register={register}
+            />
           ))}
         </div>
       )}
