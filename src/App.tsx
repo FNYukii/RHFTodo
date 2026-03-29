@@ -8,7 +8,7 @@ export const App = () => {
     <div>
       <Header />
 
-      <div className={clsx('mt-6 container', 'grid grid-cols-2 gap-12')}>
+      <div className={clsx('mt-2 container', 'grid grid-cols-2 gap-12')}>
         <TodoSection />
         <MemoSection />
       </div>
