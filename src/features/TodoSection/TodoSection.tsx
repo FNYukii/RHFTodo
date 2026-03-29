@@ -1,4 +1,4 @@
-import { LucideSave, PlusIcon } from 'lucide-react'
+import { LucideSave, PlusIcon, Check } from 'lucide-react'
 
 import { useFieldArray, useForm } from 'react-hook-form'
 import { Button } from '../../common/views/Button'
@@ -34,7 +34,7 @@ export const TodoSection = () => {
     formState: { isDirty },
   } = useForm<TodoListFormValues>({ defaultValues: DEFAULT_VALUES })
 
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'todos',
   })
@@ -44,7 +44,11 @@ export const TodoSection = () => {
     const newTodo: Todo = {
       content: '',
     }
-    append(newTodo, {})
+    append(newTodo, { shouldFocus: false })
+  }
+
+  const removeTodo = (index: number) => {
+    remove(index)
   }
 
   const save = () => {
@@ -87,15 +91,28 @@ export const TodoSection = () => {
       {fields.length !== 0 && (
         <div className="mt-2 flex flex-col gap-1">
           {fields.map((field, index) => (
-            <div key={field.id} className="flex">
+            <div
+              key={field.id}
+              className={clsx('flex gap-2 items-center', 'group')}
+            >
               <input
                 {...register(`todos.${index}.content`)}
                 placeholder="空のTodo"
                 className={clsx(
-                  'py-1 outline-none border-b border-transparent w-full',
-                  'focus:border-disabled placeholder:text-disabled',
+                  'py-1 w-full',
+                  'border-b border-transparent',
+                  'outline-none',
+                  'transition focus:border-disabled group-hover:border-disabled',
+                  'placeholder:text-disabled',
                 )}
               />
+
+              <Button
+                onClick={() => removeTodo(index)}
+                className="invisible group-hover:visible"
+              >
+                <Check />
+              </Button>
             </div>
           ))}
         </div>

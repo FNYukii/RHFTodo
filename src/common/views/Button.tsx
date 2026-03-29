@@ -4,9 +4,10 @@ import type { ReactNode } from 'react'
 type Variant = 'flat' | 'outlined' | 'filled'
 
 type Props = {
+  children: ReactNode
   variant?: Variant
   disabled?: boolean
-  children: ReactNode
+  className?: string
   onClick?: () => void
 }
 
@@ -23,6 +24,7 @@ export const Button = ({ variant = 'flat', ...props }: Props) => {
           'enabled:cursor-pointer',
           'outline-accent',
           'enabled:hover:bg-accent/20 focus-visible:bg-accent/20 focus-visible:outline-2 disabled:text-disabled',
+          props.className,
         ],
 
         // props.variant === 'outlined' && [
