@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+
+@theme {
+  /* MARK: Achromatic　colors */
+  --color-primary: #fff;
+
+  --color-secondary: var(--color-zinc-500);
+  --color-plate: var(--color-zinc-600);
+  --color-wire: var(--color-zinc-700);
+  --color-card: var(--color-zinc-900);
+
+  --color-wall: var(--color-zinc-950);
+
+  /* MARK: Chromatic colors */
+  --color-accent: var(--color-pink-500);
+}
+
+.container {
+  @apply max-w-[1000px] mx-auto xl:px-0 px-4;
+}
