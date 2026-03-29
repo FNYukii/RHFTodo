@@ -4,25 +4,25 @@ import type { ReactNode } from 'react'
 type Variant = 'flat' | 'outlined' | 'filled'
 
 type Props = {
-  variant: Variant
+  variant?: Variant
   disabled?: boolean
   children: ReactNode
   onClick?: () => void
 }
 
-export const Button = (props: Props) => {
+export const Button = ({ variant = 'flat', ...props }: Props) => {
   return (
     <button
       onClick={props.onClick}
       disabled={props.disabled}
       className={clsx(
-        props.variant === 'flat' && [
+        variant === 'flat' && [
           'p-2 -m-2 rounded-full',
           'font-bold text-accent',
           'transition',
           'enabled:cursor-pointer',
           'outline-accent',
-          'enabled:hover:bg-accent/20 focus-visible:bg-accent/20 focus-visible:outline-2 disabled:opacity-60',
+          'enabled:hover:bg-accent/20 focus-visible:bg-accent/20 focus-visible:outline-2 disabled:opacity-40',
         ],
 
         // props.variant === 'outlined' && [
