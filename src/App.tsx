@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import { Header } from './common/views/Header'
 import MemoSection from './features/MemoSection/views/MemoSection'
+import { TodoSection } from './features/TodoSection/views/TodoSection'
 
 export const App = () => {
   return (
@@ -8,11 +9,7 @@ export const App = () => {
       <Header />
 
       <div className={clsx('mt-6 container', 'grid grid-cols-2 gap-12')}>
-        <section className="bg-section p-4 rounded-lg   h-158">
-          <p className="text-accent text-lg">Todo</p>
-          <p className="mt-2 text-secondary">まだTodoはありません</p>
-        </section>
-
+        <TodoSection />
         <MemoSection />
       </div>
     </div>
