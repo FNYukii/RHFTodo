@@ -36,13 +36,13 @@ export const AchievementSection = (props: Props) => {
       {todos.length !== 0 && (
         <div className="mt-2 flex flex-col gap-2">
           {todos.map((todo, index) => (
-            <>
+            <div key={index}>
               {todo.achievedAt && (
-                <div key={index}>
+                <div>
                   <p>{todo.content}</p>
                 </div>
               )}
-            </>
+            </div>
           ))}
         </div>
       )}

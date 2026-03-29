@@ -97,7 +97,7 @@ export const TodoSection = (props: Props) => {
       {fields.length !== 0 && (
         <div className="mt-2 flex flex-col gap-1">
           {fields.map((field, index) => (
-            <>
+            <div key={index}>
               {!field.achievedAt && (
                 <TodoRow
                   field={field}
@@ -106,10 +106,9 @@ export const TodoSection = (props: Props) => {
                   register={register}
                   onRemove={() => removeTodo(index)}
                   onAchieve={() => achiveTodo(index)}
-                  key={index}
                 />
               )}
-            </>
+            </div>
           ))}
         </div>
       )}
