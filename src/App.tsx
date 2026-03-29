@@ -3,6 +3,7 @@ import { Header } from './common/views/Header'
 import MemoSection from './features/MemoSection/MemoSection'
 import { TodoSection } from './features/TodoSection/TodoSection'
 import { CalendarSection } from './features/CalendarSection/CalendarSection'
+import { Footer } from './common/views/Footer'
 
 export const App = () => {
   return (
@@ -18,9 +19,7 @@ export const App = () => {
         </div>
       </div>
 
-      <footer className="fixed bottom-0 left-0 right-0 pb-4 text-center text-disabled">
-        Copyright © 2026 FNYukii
-      </footer>
+      <Footer className="fixed bottom-4 inset-x-0" />
     </div>
   )
 }
