@@ -12,5 +12,5 @@
 }
 
 .container {
-  @apply max-w-[700px] mx-auto xl:px-0 px-4;
+  @apply max-w-[700px] mx-auto px-4;
 }

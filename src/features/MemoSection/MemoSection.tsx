@@ -19,7 +19,11 @@ const DEFAULT_VALUES: MemoFormValues = {
   content: '',
 }
 
-const MemoSection = () => {
+type Props = {
+  className?: string
+}
+
+const MemoSection = (props: Props) => {
   const {
     register,
     getValues,
@@ -40,7 +44,12 @@ const MemoSection = () => {
 
   return (
     <section
-      className={clsx('h-60', 'bg-section p-4 rounded-lg', 'flex flex-col')}
+      className={clsx(
+        'h-60',
+        'bg-section p-4 rounded-lg',
+        'flex flex-col',
+        props.className,
+      )}
     >
       <div className="flex justify-between items-center">
         <p className="text-accent text-lg">メモ</p>

@@ -20,7 +20,7 @@ export const App = () => {
 
         <div className="flex flex-col gap-6">
           <MemoSection />
-          <CalendarSection className="grow" />
+          <CalendarSection className="aspect-square" />
         </div>
       </div>
     </div>
