@@ -49,8 +49,12 @@ export const TodoSection = () => {
 
   const save = () => {
     const formValues = getValues()
-    setToLocalStorage('todoListFormValues', formValues)
-    reset(formValues)
+    const filterdValues = {
+      todos: formValues.todos.filter((todo) => todo.content !== ''),
+    }
+
+    setToLocalStorage('todoListFormValues', filterdValues)
+    reset(filterdValues)
   }
 
   // MARK: Setups
