@@ -1,11 +1,9 @@
-import type { AchievementListFormValues } from '../../features/AchievementSection/AchievementListFormValues'
 import type { MemoFormValues } from '../../features/MemoSection/MemoSection'
 import type { TodoListFormValues } from '../../features/TodoSection/TodoListFormValues'
 
 interface StorageMap {
-  memoFormValues: MemoFormValues
   todoListFormValues: TodoListFormValues
-  achievementListFormValues: AchievementListFormValues
+  memoFormValues: MemoFormValues
 }
 
 type StorageKey = keyof StorageMap

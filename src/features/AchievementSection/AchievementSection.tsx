@@ -2,22 +2,19 @@ import { LucideSave } from 'lucide-react'
 import { Button } from '../../common/views/Button'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import type { Todo } from '../TodoSection/TodoListFormValues'
 import { getFromLocalStorage } from '../../misc/utils/localStorage'
-import type { Achievement } from './AchievementListFormValues'
 
 type Props = {
   className?: string
 }
 
 export const AchievementSection = (props: Props) => {
-  const [achievements, setAchievements] = useState<Achievement[]>([])
+  const [todos, setTodos] = useState<Todo[]>([])
 
   useEffect(() => {
-    const achievementListFormValues = getFromLocalStorage(
-      'achievementListFormValues',
-    )
-    if (!achievementListFormValues) return
-    setAchievements(achievementListFormValues.achievements)
+    const todoListFormValues = getFromLocalStorage('todoListFormValues')
+    setTodos(todoListFormValues?.todos ?? [])
   }, [])
 
   return (
@@ -32,15 +29,19 @@ export const AchievementSection = (props: Props) => {
         </div>
       </div>
 
-      {achievements.length === 0 && (
+      {todos.length === 0 && (
         <p className="mt-2 text-secondary">まだ達成したTodoはありません</p>
       )}
 
-      {achievements.length !== 0 && (
+      {todos.length !== 0 && (
         <div className="mt-2 flex flex-col gap-2">
-          {achievements.map((achievement, index) => (
+          {todos.map((todo, index) => (
             <div key={index}>
-              <p>{achievement.content}</p>
+              {todo.achievedAt && (
+                <div>
+                  <p>{todo.content}</p>
+                </div>
+              )}
             </div>
           ))}
         </div>
