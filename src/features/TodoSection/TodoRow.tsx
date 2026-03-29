@@ -47,12 +47,12 @@ export const TodoRow = (props: Props) => {
           'group-hover:visible peer-focus:visible',
         )}
       >
-        <Button onClick={props.onRemove} color="secondary">
-          <Trash />
-        </Button>
-
         <Button disabled={content === ''} onClick={props.onAchieve}>
           <Check />
+        </Button>
+
+        <Button onClick={props.onRemove} color="secondary">
+          <Trash />
         </Button>
       </div>
     </div>
