@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { Header } from './common/views/Header'
 import MemoSection from './features/MemoSection/MemoSection'
 import { TodoSection } from './features/TodoSection/TodoSection'
-import { AchievementSection } from './features/AchievementSection/AchievementSection'
+import { CalendarSection } from './features/CalendarSection/CalendarSection'
 
 export const App = () => {
   return (
@@ -20,7 +20,7 @@ export const App = () => {
 
         <div className="flex flex-col gap-6">
           <MemoSection />
-          <AchievementSection className="grow" />
+          <CalendarSection className="grow" />
         </div>
       </div>
     </div>
