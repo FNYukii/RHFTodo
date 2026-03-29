@@ -22,7 +22,7 @@ export const Button = ({ variant = 'flat', ...props }: Props) => {
           'transition',
           'enabled:cursor-pointer',
           'outline-accent',
-          'enabled:hover:bg-accent/20 focus-visible:bg-accent/20 focus-visible:outline-2 disabled:opacity-40',
+          'enabled:hover:bg-accent/20 focus-visible:bg-accent/20 focus-visible:outline-2 disabled:text-disabled',
         ],
 
         // props.variant === 'outlined' && [
