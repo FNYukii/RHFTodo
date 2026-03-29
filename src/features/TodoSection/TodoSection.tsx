@@ -71,7 +71,7 @@ export const TodoSection = () => {
   return (
     <section className="bg-section p-4 rounded-lg   h-158">
       <div className="flex justify-between items-center">
-        <p className="text-accent text-lg">メモ</p>
+        <p className="text-accent text-lg">Todo</p>
 
         <div className="flex gap-3">
           <Button onClick={addTodo}>
