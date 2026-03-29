@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { Header } from './common/views/Header'
-import MemoSection from './features/MemoSection/views/MemoSection'
+import MemoSection from './features/MemoSection/MemoSection'
 import { TodoSection } from './features/TodoSection/TodoSection'
 
 export const App = () => {

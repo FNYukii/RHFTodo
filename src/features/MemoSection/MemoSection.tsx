@@ -4,10 +4,20 @@ import { useForm } from 'react-hook-form'
 import {
   getFromLocalStorage,
   setToLocalStorage,
-} from '../../../misc/utils/localStorage'
-import type { Memo } from '../types/Memo'
+} from '../../misc/utils/localStorage'
+
 import { LucideSave } from 'lucide-react'
-import { Button } from '../../../common/views/Button'
+import { Button } from '../../common/views/Button'
+
+type Memo = {
+  content: string
+}
+
+export type MemoFormValues = Memo
+
+const DEFAULT_VALUES: MemoFormValues = {
+  content: '',
+}
 
 const MemoSection = () => {
   const {
@@ -15,17 +25,17 @@ const MemoSection = () => {
     getValues,
     reset,
     formState: { isDirty },
-  } = useForm<Memo>()
+  } = useForm<MemoFormValues>({ defaultValues: DEFAULT_VALUES })
 
   const save = () => {
-    const memo = getValues()
-    setToLocalStorage('memo', memo)
-    reset(memo)
+    const formValues = getValues()
+    setToLocalStorage('memoFormValues', formValues)
+    reset(formValues)
   }
 
   useEffect(() => {
-    const memo = getFromLocalStorage('memo')
-    reset(memo)
+    const formValues = getFromLocalStorage('memoFormValues')
+    reset(formValues)
   }, [])
 
   return (
