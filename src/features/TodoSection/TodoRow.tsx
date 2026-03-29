@@ -32,12 +32,20 @@ export const TodoRow = (props: Props) => {
         {...props.register(`todos.${props.index}.content`)}
         placeholder="空のTodo"
         className={clsx(
-          'py-1 w-full border-b border-transparent outline-none transition',
+          'py-1 w-full',
+          'border-b border-transparent outline-none transition',
+          'peer',
           'focus:border-disabled group-hover:border-disabled placeholder:text-disabled',
         )}
       />
 
-      <div className={clsx('flex gap-3', 'invisible group-hover:visible')}>
+      <div
+        className={clsx(
+          'flex gap-3',
+          'invisible',
+          'group-hover:visible peer-focus:visible',
+        )}
+      >
         <Button onClick={props.onRemove} color="secondary">
           <Trash />
         </Button>
