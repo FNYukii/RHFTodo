@@ -21,7 +21,7 @@ const MemoSection = () => {
   }, [])
 
   return (
-    <section className="bg-card p-4 rounded-lg h-60">
+    <section className="bg-section p-4 rounded-lg h-60">
       <p className="text-accent text-lg">メモ</p>
 
       <textarea
@@ -29,7 +29,7 @@ const MemoSection = () => {
         placeholder="メモを入力"
         className={clsx(
           'mt-2 w-full min-h-12 field-sizing-content',
-          'placeholder:text-wire outline-none resize-none',
+          'placeholder:text-disabled outline-none resize-none',
         )}
       />
     </section>

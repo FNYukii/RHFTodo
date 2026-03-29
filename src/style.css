@@ -1,17 +1,14 @@
 @import 'tailwindcss';
 
 @theme {
-  /* MARK: Achromatic　colors */
   --color-primary: #fff;
 
+  --color-wallpaper: var(--color-zinc-950);
+  --color-section: var(--color-zinc-900);
+  --color-hovered: var(--color-zinc-600);
+  --color-disabled: var(--color-zinc-700);
   --color-secondary: var(--color-zinc-500);
-  --color-plate: var(--color-zinc-600);
-  --color-wire: var(--color-zinc-700);
-  --color-card: var(--color-zinc-900);
 
-  --color-wall: var(--color-zinc-950);
-
-  /* MARK: Chromatic colors */
   --color-accent: var(--color-pink-500);
 }
 
