@@ -1,5 +1,5 @@
 import type { MemoFormValues } from '../../features/MemoSection/MemoSection'
-import type { TodoListFormValues } from '../../features/TodoSection/TodoSection'
+import type { TodoListFormValues } from '../../features/TodoSection/TodoListFormValues'
 
 interface StorageMap {
   todoListFormValues: TodoListFormValues

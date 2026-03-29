@@ -6,8 +6,8 @@ import {
   type UseFormRegister,
   useWatch,
 } from 'react-hook-form'
-import type { TodoListFormValues } from './TodoSection'
 import { Button } from '../../common/views/Button'
+import type { TodoListFormValues } from './TodoListFormValues'
 
 type Props = {
   field: FieldArrayWithId<TodoListFormValues, 'todos', 'id'>
@@ -21,7 +21,6 @@ export const TodoRow = (props: Props) => {
   const content = useWatch({
     control: props.control,
     name: `todos.${props.index}.content`,
-    defaultValue: props.field.content,
   })
 
   return (

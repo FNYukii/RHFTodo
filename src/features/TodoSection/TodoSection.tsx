@@ -10,16 +10,7 @@ import {
 } from '../../misc/utils/localStorage'
 import { useEffect } from 'react'
 import { TodoRow } from './TodoRow'
-
-// MARK: Types
-export type Todo = {
-  content: string
-  achievedAt?: Date
-}
-
-export type TodoListFormValues = {
-  todos: Todo[]
-}
+import type { TodoListFormValues, Todo } from './TodoListFormValues'
 
 // MARK: Constants
 const DEFAULT_VALUES: TodoListFormValues = {
