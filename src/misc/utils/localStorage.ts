@@ -1,4 +1,4 @@
-import type { Memo } from '../../features/Memo/types/Memo'
+import type { Memo } from '../../features/MemoSection/types/Memo'
 
 interface StorageMap {
   memo: Memo
