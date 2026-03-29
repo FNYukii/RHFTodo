@@ -15,6 +15,7 @@ type Props = {
   control: Control<TodoListFormValues, any, TodoListFormValues>
   register: UseFormRegister<TodoListFormValues>
   onRemove: () => void
+  onAchieve: () => void
 }
 
 export const TodoRow = (props: Props) => {
@@ -50,8 +51,7 @@ export const TodoRow = (props: Props) => {
           <Trash />
         </Button>
 
-        {/* 監視している content の値を判定に使う */}
-        <Button disabled={!content || content.trim() === ''}>
+        <Button disabled={content === ''} onClick={props.onAchieve}>
           <Check />
         </Button>
       </div>

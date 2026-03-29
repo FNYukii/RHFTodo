@@ -31,7 +31,7 @@ export const TodoSection = (props: Props) => {
     formState: { isDirty },
   } = useForm<TodoListFormValues>({ defaultValues: DEFAULT_VALUES })
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, update } = useFieldArray({
     control,
     name: 'todos',
   })
@@ -46,6 +46,15 @@ export const TodoSection = (props: Props) => {
 
   const removeTodo = (index: number) => {
     remove(index)
+  }
+
+  const achiveTodo = (index: number) => {
+    const todo = fields[index]
+    const newTodo: Todo = {
+      ...todo,
+      achievedAt: new Date(),
+    }
+    update(index, newTodo)
   }
 
   const save = () => {
@@ -87,15 +96,19 @@ export const TodoSection = (props: Props) => {
 
       {fields.length !== 0 && (
         <div className="mt-2 flex flex-col gap-1">
-          {fields.map((field, index) => (
-            <TodoRow
-              field={field}
-              control={control}
-              index={index}
-              onRemove={() => removeTodo(index)}
-              register={register}
-            />
-          ))}
+          {fields
+            .filter((todo) => !todo.achievedAt)
+            .map((field, index) => (
+              <TodoRow
+                field={field}
+                index={index}
+                control={control}
+                register={register}
+                onRemove={() => removeTodo(index)}
+                onAchieve={() => achiveTodo(index)}
+                key={index}
+              />
+            ))}
         </div>
       )}
     </section>
