@@ -34,14 +34,16 @@ export const AchievementSection = (props: Props) => {
       )}
 
       {todos.length !== 0 && (
-        <div className="mt-2 flex flex-col gap-1">
-          {todos
-            .filter((todo) => todo.achievedAt)
-            .map((todo, index) => (
-              <div key={index}>
-                <p>{todo.content}</p>
-              </div>
-            ))}
+        <div className="mt-2 flex flex-col gap-2">
+          {todos.map((todo, index) => (
+            <>
+              {todo.achievedAt && (
+                <div key={index}>
+                  <p>{todo.content}</p>
+                </div>
+              )}
+            </>
+          ))}
         </div>
       )}
     </section>
