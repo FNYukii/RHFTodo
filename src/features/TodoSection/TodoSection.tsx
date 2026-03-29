@@ -31,7 +31,7 @@ export const TodoSection = (props: Props) => {
     formState: { isDirty },
   } = useForm<TodoListFormValues>({ defaultValues: DEFAULT_VALUES })
 
-  const { fields, append, remove, update } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'todos',
   })
@@ -46,15 +46,6 @@ export const TodoSection = (props: Props) => {
 
   const removeTodo = (index: number) => {
     remove(index)
-  }
-
-  const achiveTodo = (index: number) => {
-    const todo = fields[index]
-    const newTodo: Todo = {
-      ...todo,
-      achievedAt: new Date(),
-    }
-    update(index, newTodo)
   }
 
   const save = () => {
@@ -104,8 +95,7 @@ export const TodoSection = (props: Props) => {
                   index={index}
                   control={control}
                   register={register}
-                  onRemove={() => removeTodo(index)}
-                  onAchieve={() => achiveTodo(index)}
+                  onCheck={() => removeTodo(index)}
                 />
               )}
             </div>

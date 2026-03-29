@@ -1,10 +1,9 @@
 import clsx from 'clsx'
-import { Trash, Check } from 'lucide-react'
+import { Check } from 'lucide-react'
 import {
   type Control,
   type FieldArrayWithId,
   type UseFormRegister,
-  useWatch,
 } from 'react-hook-form'
 import { Button } from '../../common/views/Button'
 import type { TodoListFormValues } from './TodoListFormValues'
@@ -14,16 +13,10 @@ type Props = {
   index: number
   control: Control<TodoListFormValues, any, TodoListFormValues>
   register: UseFormRegister<TodoListFormValues>
-  onRemove: () => void
-  onAchieve: () => void
+  onCheck: () => void
 }
 
 export const TodoRow = (props: Props) => {
-  const content = useWatch({
-    control: props.control,
-    name: `todos.${props.index}.content`,
-  })
-
   return (
     <div
       key={props.field.id}
@@ -47,12 +40,8 @@ export const TodoRow = (props: Props) => {
           'group-hover:visible peer-focus:visible',
         )}
       >
-        <Button disabled={content === ''} onClick={props.onAchieve}>
+        <Button onClick={props.onCheck}>
           <Check />
-        </Button>
-
-        <Button onClick={props.onRemove} color="secondary">
-          <Trash />
         </Button>
       </div>
     </div>
