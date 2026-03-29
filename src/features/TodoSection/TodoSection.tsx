@@ -8,9 +8,10 @@ import {
   getFromLocalStorage,
   setToLocalStorage,
 } from '../../misc/utils/localStorage'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { TodoRow } from './TodoRow'
 import type { TodoListFormValues, Todo } from './TodoListFormValues'
+import type { Achievement } from '../AchievementSection/AchievementListFormValues'
 
 // MARK: Constants
 const DEFAULT_VALUES: TodoListFormValues = {
@@ -31,10 +32,14 @@ export const TodoSection = (props: Props) => {
     formState: { isDirty },
   } = useForm<TodoListFormValues>({ defaultValues: DEFAULT_VALUES })
 
-  const { fields, append, remove, update } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     control,
     name: 'todos',
   })
+
+  const [checkedAchievements, setCheckedAchievements] = useState<Achievement[]>(
+    [],
+  )
 
   // MARK: Functions
   const addTodo = () => {
@@ -49,12 +54,16 @@ export const TodoSection = (props: Props) => {
   }
 
   const achiveTodo = (index: number) => {
-    const todo = fields[index]
-    const newTodo: Todo = {
-      ...todo,
+    const todos = getValues('todos')
+    const checkedTodo = todos[index]
+
+    const newAchievement: Achievement = {
+      content: checkedTodo.content,
       achievedAt: new Date(),
     }
-    update(index, newTodo)
+
+    setCheckedAchievements((achievements) => [...achievements, newAchievement])
+    remove(index)
   }
 
   const save = () => {
@@ -63,8 +72,17 @@ export const TodoSection = (props: Props) => {
       todos: formValues.todos.filter((todo) => todo.content !== ''),
     }
 
+    // Todosを保存
     setToLocalStorage('todoListFormValues', filterdValues)
     reset(filterdValues)
+
+    // Achievementを保存
+    const currentAchievements =
+      getFromLocalStorage('achievementListFormValues')?.achievements ?? []
+    setToLocalStorage('achievementListFormValues', {
+      achievements: [...currentAchievements, ...checkedAchievements],
+    })
+    setCheckedAchievements([])
   }
 
   // MARK: Setups
@@ -97,18 +115,15 @@ export const TodoSection = (props: Props) => {
       {fields.length !== 0 && (
         <div className="mt-2 flex flex-col gap-1">
           {fields.map((field, index) => (
-            <div key={index}>
-              {!field.achievedAt && (
-                <TodoRow
-                  field={field}
-                  index={index}
-                  control={control}
-                  register={register}
-                  onRemove={() => removeTodo(index)}
-                  onAchieve={() => achiveTodo(index)}
-                />
-              )}
-            </div>
+            <TodoRow
+              key={index}
+              field={field}
+              index={index}
+              control={control}
+              register={register}
+              onRemove={() => removeTodo(index)}
+              onAchieve={() => achiveTodo(index)}
+            />
           ))}
         </div>
       )}
