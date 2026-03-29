@@ -1,6 +1,8 @@
 import type { Memo } from '../../features/MemoSection/types/Memo'
+import type { TodoListFormValues } from '../../features/TodoSection/TodoSection'
 
 interface StorageMap {
+  todoListFormValues: TodoListFormValues
   memo: Memo
 }
 

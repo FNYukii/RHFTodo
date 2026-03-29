@@ -1,31 +1,45 @@
 import { LucideSave, PlusIcon } from 'lucide-react'
 
 import { useFieldArray, useForm } from 'react-hook-form'
-import { Button } from '../../../common/views/Button'
+import { Button } from '../../common/views/Button'
 
-import type { Todo } from '../types/Todo'
 import clsx from 'clsx'
+import {
+  getFromLocalStorage,
+  setToLocalStorage,
+} from '../../misc/utils/localStorage'
+import { useEffect } from 'react'
 
-type TodoListFormValue = {
+// MARK: Types
+export type Todo = {
+  content: string
+}
+
+export type TodoListFormValues = {
   todos: Todo[]
 }
 
-const DEFAULT_VALUES: TodoListFormValue = {
+// MARK: Constants
+const DEFAULT_VALUES: TodoListFormValues = {
   todos: [],
 }
 
 export const TodoSection = () => {
+  // MARK: States
   const {
     control,
     register,
+    getValues,
+    reset,
     formState: { isDirty },
-  } = useForm<TodoListFormValue>({ defaultValues: DEFAULT_VALUES })
+  } = useForm<TodoListFormValues>({ defaultValues: DEFAULT_VALUES })
 
   const { fields, append } = useFieldArray({
     control,
     name: 'todos',
   })
 
+  // MARK: Functions
   const addTodo = () => {
     const newTodo: Todo = {
       content: '',
@@ -33,6 +47,19 @@ export const TodoSection = () => {
     append(newTodo, {})
   }
 
+  const save = () => {
+    const formValues = getValues()
+    setToLocalStorage('todoListFormValues', formValues)
+    reset(formValues)
+  }
+
+  // MARK: Setups
+  useEffect(() => {
+    const formValues = getFromLocalStorage('todoListFormValues')
+    reset(formValues)
+  }, [])
+
+  // MARK: View
   return (
     <section className="bg-section p-4 rounded-lg   h-158">
       <div className="flex justify-between items-center">
@@ -43,7 +70,7 @@ export const TodoSection = () => {
             <PlusIcon />
           </Button>
 
-          <Button disabled={!isDirty}>
+          <Button disabled={!isDirty} onClick={save}>
             <LucideSave />
           </Button>
         </div>
