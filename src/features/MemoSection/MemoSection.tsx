@@ -39,7 +39,9 @@ const MemoSection = () => {
   }, [])
 
   return (
-    <section className="bg-section p-4 rounded-lg h-60">
+    <section
+      className={clsx('h-60', 'bg-section p-4 rounded-lg', 'flex flex-col')}
+    >
       <div className="flex justify-between items-center">
         <p className="text-accent text-lg">メモ</p>
 
@@ -52,7 +54,7 @@ const MemoSection = () => {
         {...register('content')}
         placeholder="メモを入力"
         className={clsx(
-          'mt-2 w-full min-h-12 field-sizing-content',
+          'mt-2 w-full grow',
           'placeholder:text-disabled outline-none resize-none',
         )}
       />

@@ -24,7 +24,11 @@ const DEFAULT_VALUES: TodoListFormValues = {
   todos: [],
 }
 
-export const TodoSection = () => {
+type Props = {
+  className?: string
+}
+
+export const TodoSection = (props: Props) => {
   // MARK: States
   const {
     control,
@@ -69,7 +73,7 @@ export const TodoSection = () => {
 
   // MARK: View
   return (
-    <section className="bg-section p-4 rounded-lg   h-158">
+    <section className={clsx('bg-section p-4 rounded-lg', props.className)}>
       <div className="flex justify-between items-center">
         <p className="text-accent text-lg">Todo</p>
 
